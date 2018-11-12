@@ -2,20 +2,13 @@
 
 PORTNAME=	cliqz
 DISTVERSION=	1.22.3
-PORTEPOCH=	1
-CATEGORIES=	www 
-
-LICENSE=	MPL20
-LICENSE_FILE=	${WRKSRC}/LICENSE
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	cliqz-oss
-GH_PROJECT=	browser-f
+CATEGORIES=	www
 
 MAINTAINER=	santhosh.raju@gmail.com
 COMMENT=	Web browser based on the browser portion of Mozilla
 
-LLVM_DEFAULT?=	70
+LICENSE=	MPL20
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
 		nss>=3.39:security/nss \
@@ -42,7 +35,15 @@ BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
 #		soundtouch>=1.9.0:audio/soundtouch \
 
 USES=		tar:xz gmake pkgconfig gnome
-USE_GNOME=	gconf2 gtk20 gtk30 
+USE_GNOME=	gconf2 gtk20 gtk30
+
+LLVM_DEFAULT?=	70
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	cliqz-oss
+GH_PROJECT=	browser-f
+
+USE_LDCONFIG=	yes
 
 MAKE_ENV+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT}
 MAKE_ENV+=	CQZ_RELEASE_CHANNEL=release
