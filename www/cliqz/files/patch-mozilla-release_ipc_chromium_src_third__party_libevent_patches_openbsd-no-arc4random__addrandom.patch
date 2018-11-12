@@ -1,0 +1,20 @@
+--- mozilla-release/ipc/chromium/src/third_party/libevent/patches/openbsd-no-arc4random_addrandom.patch.orig	2018-11-12 18:46:26 UTC
++++ mozilla-release/ipc/chromium/src/third_party/libevent/patches/openbsd-no-arc4random_addrandom.patch
+@@ -11,7 +11,7 @@ diff --git a/ipc/chromium/src/third_party/libevent/evu
+  }
+  
+ 
+-+#if !defined(__OpenBSD__) && !defined(ANDROID)
+++#if !defined(__OpenBSD__) && !defined(__FreeBSD__) && !defined(ANDROID)
+  void
+  {
+  	arc4random_addrandom((unsigned char*)buf,
+@@ -36,7 +36,7 @@ diff --git a/ipc/chromium/src/third_party/libevent/inc
+  EVENT2_EXPORT_SYMBOL
+  int evutil_secure_rng_set_urandom_device_file(char *fname);
+  
+-+#if !defined(__OpenBSD__) && !defined(ANDROID)
+++#if !defined(__OpenBSD__) && !defined(__FreeBSD__) && !defined(ANDROID)
+  /** Seed the random number generator with extra random bytes.
+  
+      You should almost never need to call this function; it should be
