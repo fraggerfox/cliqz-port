@@ -1,6 +1,6 @@
---- mozilla-release/ipc/chromium/src/third_party/libevent/evutil_rand.c.orig	2018-11-12 18:38:30 UTC
+--- mozilla-release/ipc/chromium/src/third_party/libevent/evutil_rand.c.orig	2018-10-05 16:27:24 UTC
 +++ mozilla-release/ipc/chromium/src/third_party/libevent/evutil_rand.c
-@@ -192,7 +192,7 @@ evutil_secure_rng_get_bytes(void *buf, size_t n)
+@@ -192,7 +192,7 @@ evutil_secure_rng_get_bytes(void *buf, s
  	ev_arc4random_buf(buf, n);
  }
  
