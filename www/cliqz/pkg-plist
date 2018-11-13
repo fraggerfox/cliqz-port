@@ -51,4 +51,5 @@ lib/cliqz/removed-files
 lib/cliqz/update-settings.ini
 lib/cliqz/updater
 lib/cliqz/updater.ini
-@dir lib/cliqz
+share/applications/cliqz.desktop
+share/pixmaps/cliqz.png
