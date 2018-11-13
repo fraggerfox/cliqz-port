@@ -47,10 +47,18 @@ USE_LDCONFIG=	yes
 MAKE_ENV+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT}
 MAKE_ENV+=	CQZ_RELEASE_CHANNEL=release
 
-#CLIQZ_ICON=		${PORTNAME}.png
-#CLIQZ_ICON_SRC=	${PREFIX}/lib/${PORTNAME}/browser/chrome/icons/default/default48.png
-#CLIQZ_DESKTOP=		${WORKSRC}/mozilla-release/taskcluster/docker/firefox-snap/firefox.desktop
+CLIQZ_ICON=		${PORTNAME}.png
+CLIQZ_ICON_SRC=		${WRKSRC}/mozilla-release/browser/branding/${PORTNAME}/default48.png
+MOZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/mozilla.desktop
+CLIQZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/cliqz.desktop
 
+post-patch:
+	@${CP} ${MOZ_DESKTOP} ${CLIQZ_DESKTOP}
+	@${REINPLACE_CMD} -e 's/@MOZ_APP_DISPLAYNAME@/Cliqz Internet/g' \
+		-e 's/@MOZ_APP_NAME@/${PORTNAME}/g' \
+		-e '/Icon=${PORTNAME}/ s/${PORTNAME}/${CLIQZ_ICON}/' \
+		-e '/StartupWMClass/d' \
+		${CLIQZ_DESKTOP}
 do-build:
 	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ./magic_build_and_package.sh)
 
@@ -63,5 +71,8 @@ do-install:
 
 post-install:
 	${LN} -sf ${PREFIX}/lib/${PORTNAME}/${PORTNAME}-bin ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${INSTALL_DATA} ${CLIQZ_DESKTOP} ${STAGEDIR}${PREFIX}/share/applications/
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
+	@${CP} ${CLIQZ_ICON_SRC} ${STAGEDIR}${PREFIX}/share/pixmaps/${CLIQZ_ICON}
 
 .include <bsd.port.mk>
