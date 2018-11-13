@@ -32,7 +32,6 @@ BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
 		yasm:devel/yasm \
 		${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		zip:archivers/zip
-#		soundtouch>=1.9.0:audio/soundtouch \
 
 USES=		tar:xz gmake pkgconfig gnome
 USE_GNOME=	gconf2 gtk20 gtk30
@@ -59,8 +58,8 @@ do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}
 	(cd ${WRKSRC}/obj/dist/${PORTNAME} && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/${PORTNAME})
-	${CHMOD} 755 ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${PORTNAME}-bin
-	${CHMOD} 755 ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${PORTNAME}
+	@${CHMOD} 755 ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${PORTNAME}-bin
+	@${CHMOD} 755 ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${PORTNAME}
 
 post-install:
 	${LN} -sf ${PREFIX}/lib/${PORTNAME}/${PORTNAME}-bin ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
