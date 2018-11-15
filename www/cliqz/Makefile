@@ -33,7 +33,7 @@ BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
 		${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		zip:archivers/zip
 
-USES=		tar:xz gmake pkgconfig gnome
+USES=		tar:xz gmake pkgconfig gnome python
 USE_GNOME=	gconf2 gtk20 gtk30
 
 LLVM_DEFAULT?=	70
