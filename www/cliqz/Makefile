@@ -10,6 +10,8 @@ COMMENT=	Web browser based on the browser portion of Mozilla
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FETCH_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
+
 BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
 		nss>=3.39:security/nss \
 		icu>=59.1,1:devel/icu \
@@ -29,6 +31,7 @@ BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
 		autoconf-2.13:devel/autoconf213 \
 		bash:shells/bash \
 		yasm:devel/yasm \
+		wget:ftp/wget \
 		${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		zip:archivers/zip
 
