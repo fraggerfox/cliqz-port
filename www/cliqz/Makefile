@@ -3,6 +3,13 @@
 PORTNAME=	cliqz
 DISTVERSION=	1.22.3
 CATEGORIES=	www
+MASTER_SITES=	https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/:amazon \
+		http://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/${CLIQZ_LAST_BUILD_ID}/:cliqz
+DISTFILES=	adult-domains.bin:amazon \
+		cliqz@cliqz.com.xpi:cliqz \
+		https-everywhere@cliqz.com.xpi:cliqz \
+		gdprtool@cliqz.com.xpi:cliqz
+EXTRACT_ONLY=	${DISTNAME}${_GITHUB_EXTRACT_SUFX}
 
 MAINTAINER=	santhosh.raju@gmail.com
 COMMENT=	Web browser based on the browser portion of Mozilla
@@ -31,7 +38,6 @@ BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
 		autoconf-2.13:devel/autoconf213 \
 		bash:shells/bash \
 		yasm:devel/yasm \
-		wget:ftp/wget \
 		${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		zip:archivers/zip
 
@@ -48,7 +54,7 @@ USE_LDCONFIG=	yes
 
 CLIQZ_CHANNEL=		release
 # If the DISTVERSION is update, make sure to update the last build id from
-# fetch -qo - https://$S3_BUCKET/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/lastbuildid
+# fetch -qo - https://s3.amazonaws.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/lastbuildid
 CLIQZ_LAST_BUILD_ID=	20181005182933
 CLIQZ_ICON=		${PORTNAME}.png
 CLIQZ_ICON_SRC=		${WRKSRC}/mozilla-release/browser/branding/${PORTNAME}/default48.png
@@ -59,11 +65,13 @@ MAKE_ENV+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT}
 MAKE_ENV+=	CQZ_RELEASE_CHANNEL=${CLIQZ_CHANNEL}
 MAKE_ENV+=	CQZ_BUILD_ID=${CLIQZ_LAST_BUILD_ID}
 
-do-fetch:
-	${MKDIR} ${WRKSRC}
-	${FETCH_CMD} -o ${WRKSRC}/adult-domains.bin \
-		https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/adult-domains.bin
-
+post-extract:
+	${CP} ${DISTDIR}/${DIST_SUBDIR}/adult-domains.bin ${WRKSRC}
+	${MKDIR} ${WRKSRC}/obj/dist/bin/browser/features
+	${CP} ${DISTDIR}/${DIST_SUBDIR}/cliqz@cliqz.com.xpi \
+		${DISTDIR}/${DIST_SUBDIR}/https-everywhere@cliqz.com.xpi \
+		${DISTDIR}/${DIST_SUBDIR}/gdprtool@cliqz.com.xpi \
+		${WRKSRC}/obj/dist/bin/browser/features
 post-patch:
 	@${CP} ${MOZ_DESKTOP} ${CLIQZ_DESKTOP}
 	@${REINPLACE_CMD} -e 's/@MOZ_APP_DISPLAYNAME@/Cliqz Internet/g' \
