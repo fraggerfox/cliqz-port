@@ -12,7 +12,7 @@ DISTFILES=	adult-domains.bin:amazon \
 EXTRACT_ONLY=	${DISTNAME}${_GITHUB_EXTRACT_SUFX}
 
 MAINTAINER=	santhosh.raju@gmail.com
-COMMENT=	Web browser based on the browser portion of Mozilla
+COMMENT=	Secure browser (Mozilla based) with built-in quick search
 
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -53,7 +53,7 @@ GH_PROJECT=	browser-f
 USE_LDCONFIG=	yes
 
 CLIQZ_CHANNEL=		release
-# If the DISTVERSION is update, make sure to update the last build id from
+# If the DISTVERSION is updated, make sure to update the last build id from
 # fetch -qo - https://s3.amazonaws.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/lastbuildid
 CLIQZ_LAST_BUILD_ID=	20181005182933
 CLIQZ_ICON=		${PORTNAME}.png
