@@ -18,6 +18,14 @@ LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FETCH_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
+LIB_DEPENDS=	libnspr4.so:devel/nspr \
+		libplc4.so:devel/nspr \
+		libplds4.so:devel/nspr \
+		libnssutil3.so:security/nss \
+		libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libdbus-glib-1.so:devel/dbus-glib \
+		libdbus-1.so:devel/dbus
 
 BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
 		nss>=3.39:security/nss \
@@ -41,8 +49,12 @@ BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
 		${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		zip:archivers/zip
 
-USES=		tar:xz gmake pkgconfig gnome python
-USE_GNOME=	gconf2 gtk20 gtk30
+USES=		tar:xz gmake pkgconfig gnome python desktop-file-utils
+
+USE_GNOME=	gconf2 gtk20 gtk30 cairo gdkpixbuf2
+
+USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xrender \
+		xcb xt
 
 LLVM_DEFAULT?=	70
 
