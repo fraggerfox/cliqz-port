@@ -66,7 +66,7 @@ USE_LDCONFIG=	yes
 
 CLIQZ_CHANNEL=		release
 # If the DISTVERSION is updated, make sure to update the last build id from
-# fetch -qo - https://s3.amazonaws.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/lastbuildid
+# fetch -qo - https://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/lastbuildid
 CLIQZ_LAST_BUILD_ID=	20181005182933
 CLIQZ_ICON=		${PORTNAME}.png
 CLIQZ_ICON_SRC=		${WRKSRC}/mozilla-release/browser/branding/${PORTNAME}/default48.png
