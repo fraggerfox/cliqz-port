@@ -18,35 +18,35 @@ LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FETCH_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
-LIB_DEPENDS=	libnspr4.so:devel/nspr \
+LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libdbus-glib-1.so:devel/dbus-glib \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libnspr4.so:devel/nspr \
 		libplc4.so:devel/nspr \
 		libplds4.so:devel/nspr \
-		libnssutil3.so:security/nss \
-		libfreetype.so:print/freetype2 \
-		libfontconfig.so:x11-fonts/fontconfig \
-		libdbus-glib-1.so:devel/dbus-glib \
-		libdbus-1.so:devel/dbus
+		libnssutil3.so:security/nss
 
-BUILD_DEPENDS=	nspr>=4.19:devel/nspr \
-		nss>=3.39:security/nss \
+BUILD_DEPENDS=	autoconf-2.13:devel/autoconf213 \
+		bash:shells/bash \
+		graphite2>=1.3.12:graphics/graphite2 \
+		harfbuzz>=1.8.8:print/harfbuzz \
 		icu>=59.1,1:devel/icu \
 		libevent>=2.1.8:devel/libevent \
-		harfbuzz>=1.8.8:print/harfbuzz \
-		graphite2>=1.3.12:graphics/graphite2 \
-		png>=1.6.34:graphics/png \
 		libvorbis>=1.3.6,3:audio/libvorbis \
 		libvpx>=1.5.0:multimedia/libvpx \
-		${LOCALBASE}/include/pulse/pulseaudio.h:audio/pulseaudio \
-		sqlite3>=3.24.0:databases/sqlite3 \
-		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
-		v4l_compat>0:multimedia/v4l_compat \
+		${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		llvm${LLVM_DEFAULT}>=0:devel/llvm${LLVM_DEFAULT} \
+		nspr>=4.19:devel/nspr \
+		nss>=3.39:security/nss \
+		png>=1.6.34:graphics/png \
+		${LOCALBASE}/include/pulse/pulseaudio.h:audio/pulseaudio \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
 		rust>=1.28:lang/rust \
 		rust-cbindgen>=0.6.2:devel/rust-cbindgen \
-		autoconf-2.13:devel/autoconf213 \
-		bash:shells/bash \
+		sqlite3>=3.24.0:databases/sqlite3 \
+		v4l_compat>0:multimedia/v4l_compat \
 		yasm:devel/yasm \
-		${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		zip:archivers/zip
 
 USES=		tar:xz gmake pkgconfig gnome python desktop-file-utils
