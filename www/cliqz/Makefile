@@ -56,8 +56,6 @@ USE_GNOME=	gconf2 gtk20 gtk30 cairo gdkpixbuf2
 USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xrender \
 		xcb xt
 
-LLVM_DEFAULT?=	70
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	cliqz-oss
 GH_PROJECT=	browser-f
