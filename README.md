@@ -27,7 +27,7 @@ Credits
 -------
 
 * Cliqz Browser is developed and maintained by [Cliqz GmBH][3]
-* Thanks to @aashiks and @dbalan for helping me come up with port package and
+* Thanks to `@aashiks` and `@dbalan` for helping me come up with port package and
   for doing builds to test out the port.
 * Thanks to `@ppaeps` for a machine to do and test the port development and
   testing out / fixing / committing the port.
