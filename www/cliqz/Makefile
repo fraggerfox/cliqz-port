@@ -76,6 +76,7 @@ CLIQZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/cl
 MAKE_ENV+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT}
 MAKE_ENV+=	CQZ_RELEASE_CHANNEL=${CLIQZ_CHANNEL}
 MAKE_ENV+=	CQZ_BUILD_ID=${CLIQZ_LAST_BUILD_ID}
+MAKE_ENV+=	MOZBUILD_STATE_PATH=${WRKDIR}
 
 post-extract:
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/adult-domains.bin ${WRKSRC}
