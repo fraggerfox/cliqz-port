@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/cliqz/Makefile 498805 2019-04-13 12:10:26Z swills $
+# $FreeBSD: head/www/cliqz/Makefile 499036 2019-04-15 17:32:57Z swills $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.26.3
