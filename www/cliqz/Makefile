@@ -1,4 +1,4 @@
-# $FreeBSD$
+# $FreeBSD: head/www/cliqz/Makefile 501861 2019-05-17 12:24:38Z joneum $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.26.5
