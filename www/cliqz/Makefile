@@ -1,8 +1,7 @@
 # $FreeBSD: head/www/cliqz/Makefile 502416 2019-05-24 03:25:11Z tobik $
 
 PORTNAME=	cliqz
-DISTVERSION=	1.26.5
-PORTREVISION=	1
+DISTVERSION=	1.27.0
 CATEGORIES=	www
 MASTER_SITES=	https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/:amazon \
 		http://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/${CLIQZ_LAST_BUILD_ID}/:cliqz
@@ -52,7 +51,7 @@ BUILD_DEPENDS=	autoconf-2.13:devel/autoconf213 \
 		zip:archivers/zip
 
 USES=		tar:xz gmake pkgconfig gnome python desktop-file-utils \
-		compiler:c11
+		compiler:c11 shebangfix
 
 USE_GNOME=	gconf2 gtk20 gtk30 cairo gdkpixbuf2
 
@@ -65,10 +64,14 @@ GH_PROJECT=	browser-f
 
 USE_LDCONFIG=	yes
 
+bash_OLD_CMD=	"/bin/bash"
+bash_CMD=	${LOCALBASE}/bin/bash
+SHEBANG_FILES=	magic_build_and_package.sh
+
 CLIQZ_CHANNEL=		release
 # If the DISTVERSION is updated, make sure to update the last build id from
 # fetch -qo - https://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/lastbuildid
-CLIQZ_LAST_BUILD_ID=	20190507112044
+CLIQZ_LAST_BUILD_ID=	20190603212344
 CLIQZ_ICON=		${PORTNAME}.png
 CLIQZ_ICON_SRC=		${WRKSRC}/mozilla-release/browser/branding/${PORTNAME}/default48.png
 MOZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/mozilla.desktop
