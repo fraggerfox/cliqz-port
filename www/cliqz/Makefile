@@ -37,6 +37,7 @@ BUILD_DEPENDS=	autoconf-2.13:devel/autoconf213 \
 		libvpx>=1.5.0:multimedia/libvpx \
 		${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		llvm${LLVM_DEFAULT}>=0:devel/llvm${LLVM_DEFAULT} \
+		nasm:devel/nasm \
 		node:www/node \
 		nspr>=4.19:devel/nspr \
 		nss>=3.39:security/nss \
