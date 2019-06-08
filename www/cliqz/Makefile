@@ -79,6 +79,7 @@ MOZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/mozi
 CLIQZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/cliqz.desktop
 
 MAKE_ENV+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT}
+MAKE_ENV+=	LLVM_OBJDUMP=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-objdump
 MAKE_ENV+=	CQZ_RELEASE_CHANNEL=${CLIQZ_CHANNEL}
 MAKE_ENV+=	CQZ_BUILD_ID=${CLIQZ_LAST_BUILD_ID}
 MAKE_ENV+=	MOZBUILD_STATE_PATH=${WRKDIR}
