@@ -54,7 +54,7 @@ BUILD_DEPENDS=	autoconf-2.13:devel/autoconf213 \
 USES=		tar:xz gmake pkgconfig gnome python desktop-file-utils \
 		compiler:c11 shebangfix
 
-USE_GNOME=	gtk20 gtk30 cairo gdkpixbuf2
+USE_GNOME=	gconf2 gtk20 gtk30 cairo gdkpixbuf2
 
 USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xrender \
 		xcb xt
