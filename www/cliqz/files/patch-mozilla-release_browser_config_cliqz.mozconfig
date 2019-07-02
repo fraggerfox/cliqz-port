@@ -9,6 +9,6 @@
 +ac_add_options --disable-tests
 +ac_add_options --disable-debug
 +ac_add_options --disable-debug-symbols
- 
+
  export MOZ_APP_PROFILE=CLIQZ
  export MOZ_AUTOMATION_UPLOAD=1
