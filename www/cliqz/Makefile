@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/cliqz/Makefile 505837 2019-07-04 14:41:57Z tobik $
+# $FreeBSD: head/www/cliqz/Makefile 507995 2019-08-03 20:25:11Z kai $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.28.0
@@ -51,7 +51,7 @@ BUILD_DEPENDS=	autoconf-2.13:devel/autoconf213 \
 		yasm:devel/yasm \
 		zip:archivers/zip
 
-USES=		tar:xz gmake pkgconfig gnome python desktop-file-utils \
+USES=		tar:xz gmake pkgconfig gnome python:2.7,build desktop-file-utils \
 		compiler:c11 shebangfix
 
 USE_GNOME=	gconf2 gtk20 gtk30 cairo gdkpixbuf2
