@@ -2,7 +2,7 @@
 
 PORTNAME=	cliqz
 DISTVERSION=	1.28.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/:amazon \
 		http://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/${CLIQZ_LAST_BUILD_ID}/:cliqz
@@ -10,6 +10,7 @@ DISTFILES=	adult-domains.bin:amazon \
 		cliqz@cliqz.com.xpi:cliqz \
 		gdprtool@cliqz.com.xpi:cliqz \
 		https-everywhere@cliqz.com.xpi:cliqz
+DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}${_GITHUB_EXTRACT_SUFX}
 
 MAINTAINER=	santhosh.raju@gmail.com
