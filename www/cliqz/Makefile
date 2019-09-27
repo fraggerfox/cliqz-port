@@ -1,7 +1,8 @@
-# $FreeBSD: head/www/cliqz/Makefile 510068 2019-08-28 14:30:02Z jbeich $
+# $FreeBSD: head/www/cliqz/Makefile 513013 2019-09-27 09:35:20Z tobik $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.28.2
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/:amazon \
 		http://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/${CLIQZ_LAST_BUILD_ID}/:cliqz
