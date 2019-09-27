@@ -85,24 +85,29 @@ MAKE_ENV+=	CQZ_BUILD_ID=${CLIQZ_LAST_BUILD_ID} \
 		LLVM_OBJDUMP=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-objdump \
 		MOZBUILD_STATE_PATH=${WRKDIR}
 
+# Configure args passed into mach build system
+MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-crashreporter" \
+			"ac_add_options --disable-debug" \
+			"ac_add_options --disable-debug-symbols" \
+			"ac_add_options --disable-tests" \
+			"ac_add_options --disable-updater" \
+			"ac_add_options --libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib"
+
+.include <bsd.port.pre.mk>
+
+# Default to llvm 8 for i386
+.if ${LLVM_DEFAULT:S,-devel,990,} >= 90 && ${ARCH} == i386
+LLVM_DEFAULT=	80
+.endif
+
 # Require newer Clang than what's in base system unless user opted out
 .if ${CC} == cc && ${CXX} == c++ && exists(/usr/lib/libc++.so)
-.  if ${LLVM_DEFAULT:S,-devel,990,} >= 90 && ${ARCH} == i386
-LLVM_DEFAULT=	80
-.  endif
 CPP=		${LOCALBASE}/bin/clang-cpp${LLVM_DEFAULT}
 CC=		${LOCALBASE}/bin/clang${LLVM_DEFAULT}
 CXX=		${LOCALBASE}/bin/clang++${LLVM_DEFAULT}
-USES:=		${USES:Ncompiler\:*} # XXX avoid warnings
+# XXX avoid warnings
+USES:=		${USES:Ncompiler\:*}
 .endif
-
-# Configure args passed into mach build system
-MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-crashreporter"
-MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-updater"
-MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-tests"
-MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-debug"
-MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-debug-symbols"
-MOZ_CONFIGURE_ARGS+=	"ac_add_options --libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib"
 
 post-extract:
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/adult-domains.bin ${WRKSRC}
@@ -111,8 +116,6 @@ post-extract:
 		${DISTDIR}/${DIST_SUBDIR}/https-everywhere@cliqz.com.xpi \
 		${DISTDIR}/${DIST_SUBDIR}/gdprtool@cliqz.com.xpi \
 		${WRKSRC}/obj/dist/bin/browser/features
-
-.include <bsd.port.pre.mk>
 
 post-patch:
 	@${CP} ${MOZ_DESKTOP} ${CLIQZ_DESKTOP}
@@ -125,8 +128,8 @@ post-patch:
 	@${ECHO_CMD} ${MOZ_CONFIGURE_ARG} >> \
 		${WRKSRC}/mozilla-release/browser/config/cliqz.mozconfig;
 .endfor
+# This prevents linker exhausting memory in i386 builds
 .if ${ARCH} == "i386"
-	# This prevents linker exhausting memory in i386 builds
 	@${ECHO_CMD} 'export LDFLAGS="-Wl,--no-keep-memory -Wl,--as-needed"' >> \
 		${WRKSRC}/mozilla-release/browser/config/cliqz.mozconfig
 .endif
