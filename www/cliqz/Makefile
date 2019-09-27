@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/cliqz/Makefile 513013 2019-09-27 09:35:20Z tobik $
+# $FreeBSD: head/www/cliqz/Makefile 512440 2019-09-20 19:58:36Z jbeich $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.29.0
@@ -87,6 +87,9 @@ MAKE_ENV+=	CQZ_BUILD_ID=${CLIQZ_LAST_BUILD_ID} \
 
 # Require newer Clang than what's in base system unless user opted out
 .if ${CC} == cc && ${CXX} == c++ && exists(/usr/lib/libc++.so)
+.  if ${LLVM_DEFAULT:S,-devel,990,} >= 90 && ${ARCH} == i386
+LLVM_DEFAULT=	80
+.  endif
 CPP=		${LOCALBASE}/bin/clang-cpp${LLVM_DEFAULT}
 CC=		${LOCALBASE}/bin/clang${LLVM_DEFAULT}
 CXX=		${LOCALBASE}/bin/clang++${LLVM_DEFAULT}
