@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/cliqz/Makefile 512440 2019-09-20 19:58:36Z jbeich $
+# $FreeBSD: head/www/cliqz/Makefile 513189 2019-09-29 03:23:31Z fox $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.29.0
@@ -96,7 +96,7 @@ MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-crashreporter" \
 .include <bsd.port.pre.mk>
 
 # Default to llvm 8 for i386
-.if ${LLVM_DEFAULT:S,-devel,990,} >= 90 && ${ARCH} == i386
+.if ${ARCH} == i386 && ${LLVM_DEFAULT:S,-devel,990,} >= 90
 LLVM_DEFAULT=	80
 .endif
 
