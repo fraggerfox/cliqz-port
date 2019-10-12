@@ -28,8 +28,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libplc4.so:devel/nspr \
 		libplds4.so:devel/nspr
 
-BUILD_DEPENDS=	${LOCALBASE}/include/pulse/pulseaudio.h:audio/pulseaudio \
-		${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
 		${RUST_DEFAULT}>=1.28:lang/${RUST_DEFAULT} \
 		autoconf-2.13:devel/autoconf213 \
@@ -94,12 +93,14 @@ MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-crashreporter" \
 			"ac_add_options --with-system-graphite2" \
 			"ac_add_options --with-system-harfbuzz"
 
+# Audio server options
+OPTIONS_SINGLE=		AUDIO
+OPTIONS_SINGLE_AUDIO=	JACK PULSEAUDIO SNDIO
+OPTIONS_DEFAULT=	PULSEAUDIO
+
 .include <bsd.port.pre.mk>
 
-# Default to llvm 8 for i386
-.if ${ARCH} == i386 && ${LLVM_DEFAULT:S,-devel,990,} >= 90
-LLVM_DEFAULT=	80
-.endif
+.include "Makefile.options"
 
 # Require newer Clang than what's in base system unless user opted out
 .if ${CC} == cc && ${CXX} == c++ && exists(/usr/lib/libc++.so)
