@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/cliqz/Makefile 513733 2019-10-03 20:35:29Z jbeich $
+# $FreeBSD: head/www/cliqz/Makefile 514199 2019-10-10 00:44:57Z jbeich $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.29.2
@@ -57,8 +57,7 @@ USES=		compiler:c11 desktop-file-utils gmake gnome pkgconfig \
 
 USE_GNOME=	cairo gconf2 gdkpixbuf2 gtk20 gtk30
 
-USE_XORG=	x11 xcb xcb xcomposite xcursor xdamage xext xfixes xi xrender \
-		xt
+USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xrender xt
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	cliqz-oss
@@ -91,7 +90,9 @@ MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-crashreporter" \
 			"ac_add_options --disable-debug-symbols" \
 			"ac_add_options --disable-tests" \
 			"ac_add_options --disable-updater" \
-			"ac_add_options --libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib"
+			"ac_add_options --libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib" \
+			"ac_add_options --with-system-graphite2" \
+			"ac_add_options --with-system-harfbuzz"
 
 .include <bsd.port.pre.mk>
 
