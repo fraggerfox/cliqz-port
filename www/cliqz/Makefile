@@ -23,6 +23,8 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libdbus-glib-1.so:devel/dbus-glib \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
+		libgraphite2.so:graphics/graphite2 \
+		libharfbuzz.so:print/harfbuzz \
 		libnspr4.so:devel/nspr \
 		libnssutil3.so:security/nss \
 		libplc4.so:devel/nspr \
@@ -30,23 +32,23 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
-		${RUST_DEFAULT}>=1.28:lang/${RUST_DEFAULT} \
+		${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
 		autoconf-2.13:devel/autoconf213 \
 		bash:shells/bash \
-		graphite2>=1.3.12:graphics/graphite2 \
-		harfbuzz>=1.8.8:print/harfbuzz \
-		icu>=59.1,1:devel/icu \
+		graphite2>=1.3.13:graphics/graphite2 \
+		harfbuzz>=2.5.3:print/harfbuzz \
+		icu>=63.1,1:devel/icu \
 		libevent>=2.1.8:devel/libevent \
 		libvorbis>=1.3.6,3:audio/libvorbis \
 		libvpx>=1.5.0:multimedia/libvpx \
 		llvm${LLVM_DEFAULT}>=0:devel/llvm${LLVM_DEFAULT} \
 		nasm:devel/nasm \
 		node:www/node \
-		nspr>=4.19:devel/nspr \
+		nspr>=4.21:devel/nspr \
 		nss>=3.39:security/nss \
-		png>=1.6.34:graphics/png \
-		rust-cbindgen>=0.6.2:devel/rust-cbindgen \
-		sqlite3>=3.24.0:databases/sqlite3 \
+		png>=1.6.35:graphics/png \
+		rust-cbindgen>=0.8.7:devel/rust-cbindgen \
+		sqlite3>=3.28.0:databases/sqlite3 \
 		v4l_compat>0:multimedia/v4l_compat \
 		yasm:devel/yasm \
 		zip:archivers/zip
@@ -61,6 +63,8 @@ USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xrender xt
 USE_GITHUB=	yes
 GH_ACCOUNT=	cliqz-oss
 GH_PROJECT=	browser-f
+
+.include "${.CURDIR}/Makefile.options"
 
 USE_LDCONFIG=	yes
 
@@ -93,14 +97,7 @@ MOZ_CONFIGURE_ARGS+=	"ac_add_options --disable-crashreporter" \
 			"ac_add_options --with-system-graphite2" \
 			"ac_add_options --with-system-harfbuzz"
 
-# Audio server options
-OPTIONS_SINGLE=		AUDIO
-OPTIONS_SINGLE_AUDIO=	JACK PULSEAUDIO SNDIO
-OPTIONS_DEFAULT=	PULSEAUDIO
-
 .include <bsd.port.pre.mk>
-
-.include "Makefile.options"
 
 # Require newer Clang than what's in base system unless user opted out
 .if ${CC} == cc && ${CXX} == c++ && exists(/usr/lib/libc++.so)
