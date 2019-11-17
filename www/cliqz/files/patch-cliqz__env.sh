@@ -16,12 +16,12 @@ phase.
  
  if [ -z $CQZ_BUILD_ID ]; then
    echo "CQZ_BUILD_ID not specified and can not be obtain from "$S3_BUCKET
-@@ -131,7 +131,7 @@ OBJ_DIR=$MOZ_OBJDIR
+@@ -131,6 +131,6 @@ OBJ_DIR=$MOZ_OBJDIR
  SRC_BASE=mozilla-release
  
  # automatic forget tab - start
 -wget -O adult-domains.bin https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/adult-domains.bin
 +#wget -O adult-domains.bin https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/adult-domains.bin
- export CQZ_AUTO_PRIVATE_TAB=1
  export CQZ_ADULT_DOMAINS_BF=../adult-domains.bin
  # automatic forget tab - end
+
