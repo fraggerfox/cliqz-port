@@ -2,7 +2,7 @@ Revert bug 1497976 as close_fds on Python 2 is too slow
 
 diff --git build/moz.configure/util.configure build/moz.configure/util.configure
 index 25862fee7c32..3fc725a5124e 100644
---- mozilla-release/build/moz.configure/util.configure
+--- mozilla-release/build/moz.configure/util.configure 2019-11-13 13:22:25 UTC
 +++ mozilla-release/build/moz.configure/util.configure
 @@ -22,20 +22,13 @@ def configure_error(message):
  

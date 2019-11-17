@@ -9,8 +9,6 @@ DISTFILES=	adult-domains.bin:amazon \
 		cliqz@cliqz.com.xpi:cliqz \
 		gdprtool@cliqz.com.xpi:cliqz \
 		https-everywhere@cliqz.com.xpi:cliqz
-# The upstream tagged the version incorrectly.
-GH_TAGNAME=	1.30.1
 DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}${_GITHUB_EXTRACT_SUFX}
 
