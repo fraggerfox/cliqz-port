@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/cliqz/Makefile.options 514628 2019-10-17 00:27:24Z fox $
+# $FreeBSD: head/www/cliqz/Makefile.options 518395 2019-11-25 10:37:38Z fox $
 
 # Audio server options
 OPTIONS_MULTI=		AUDIO
