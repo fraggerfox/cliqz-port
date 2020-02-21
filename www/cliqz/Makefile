@@ -1,13 +1,13 @@
 # $FreeBSD: head/www/cliqz/Makefile 524658 2020-01-30 20:00:06Z tobik $
 
 PORTNAME=	cliqz
-DISTVERSION=	1.32.1
-PORTREVISION=	1
+DISTVERSION=	1.33.0
 CATEGORIES=	www
 MASTER_SITES=	https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/:amazon \
 		http://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/${CLIQZ_LAST_BUILD_ID}/:cliqz
 DISTFILES=	adult-domains.bin:amazon \
 		cliqz@cliqz.com.xpi:cliqz \
+		dat@cliqz.com.xpi:cliqz \
 		gdprtool@cliqz.com.xpi:cliqz \
 		https-everywhere@cliqz.com.xpi:cliqz
 DIST_SUBDIR=	${PORTNAME}
@@ -33,7 +33,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
-		${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
+		${RUST_DEFAULT}>=1.39:lang/${RUST_DEFAULT} \
 		autoconf-2.13:devel/autoconf213 \
 		bash:shells/bash \
 		graphite2>=1.3.13:graphics/graphite2 \
@@ -46,11 +46,11 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		llvm${LLVM_DEFAULT}>=0:devel/llvm${LLVM_DEFAULT} \
 		nasm:devel/nasm \
 		node:www/node \
-		nspr>=4.21:devel/nspr \
-		nss>=3.46.1:security/nss \
+		nspr>=4.24:devel/nspr \
+		nss>=3.49.2:security/nss \
 		png>=1.6.35:graphics/png \
-		rust-cbindgen>=0.8.7:devel/rust-cbindgen \
-		sqlite3>=3.29.0:databases/sqlite3 \
+		rust-cbindgen>=0.12.0:devel/rust-cbindgen \
+		sqlite3>=3.30.1:databases/sqlite3 \
 		v4l_compat>0:multimedia/v4l_compat \
 		yasm:devel/yasm \
 		zip:archivers/zip
@@ -75,7 +75,7 @@ SHEBANG_FILES=	magic_build_and_package.sh
 CLIQZ_CHANNEL=		release
 # If the DISTVERSION is updated, make sure to update the last build id from
 # fetch -qo - https://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/lastbuildid
-CLIQZ_LAST_BUILD_ID=	20200121101408
+CLIQZ_LAST_BUILD_ID=	20200219152122
 CLIQZ_ICON=		${PORTNAME}.png
 CLIQZ_ICON_SRC=		${WRKSRC}/mozilla-release/browser/branding/${PORTNAME}/default48.png
 MOZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/mozilla.desktop
