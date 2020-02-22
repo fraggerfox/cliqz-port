@@ -86,6 +86,7 @@ MAKE_ENV+=	CQZ_BUILD_ID=${CLIQZ_LAST_BUILD_ID} \
 		LLVM_CONFIG=llvm-config${LLVM_DEFAULT} \
 		LLVM_OBJDUMP=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-objdump \
 		PYTHON3="${LOCALBASE}/bin/python${PYTHON3_DEFAULT}" \
+		RUSTFLAGS=${RUSTFLAGS} \
 		MOZBUILD_STATE_PATH=${WRKDIR}
 
 # Configure args passed into mach build system
@@ -101,6 +102,19 @@ MOZ_CONFIGURE_ARGS+=	"--disable-crashreporter" \
 .include "${.CURDIR}/Makefile.options"
 
 .include <bsd.port.pre.mk>
+
+# Adjust -C target-cpu if -march/-mcpu is set by bsd.cpu.mk
+.if ${ARCH} == amd64 || ${ARCH} == i386
+RUSTFLAGS+=	${CFLAGS:M-march=*:S/-march=/-C target-cpu=/}
+.else
+RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/}
+.endif
+
+.if ${ARCH:Maarch64} || ${MACHINE_CPU:Msse2}
+MOZ_CONFIGURE_ARGS+=	"--enable-rust-simd"
+.else
+MOZ_CONFIGURE_ARGS+=	"--disable-rust-simd"
+.endif
 
 # Require newer Clang than what's in base system unless user opted out
 .if ${CC} == cc && ${CXX} == c++ && exists(/usr/lib/libc++.so)
@@ -138,6 +152,11 @@ post-patch:
 # Disable vendor checksums like lang/rust
 	@${REINPLACE_CMD} 's,"files":{[^}]*},"files":{},' \
 		${WRKSRC}/mozilla-release/third_party/rust/*/.cargo-checksum.json
+
+pre-configure-script:
+	# Check that the running kernel has COMPAT_FREEBSD11 required by lang/rust post-ino64
+	@${SETENV} CC="${CC}" OPSYS="${OPSYS}" OSVERSION="${OSVERSION}" WRKDIR="${WRKDIR}" \
+		${SH} ${SCRIPTSDIR}/rust-compat11-canary.sh
 
 do-build:
 	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ./magic_build_and_package.sh)
