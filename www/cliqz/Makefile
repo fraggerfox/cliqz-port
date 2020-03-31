@@ -40,7 +40,7 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		autoconf-2.13:devel/autoconf213 \
 		bash:shells/bash \
 		graphite2>=1.3.13:graphics/graphite2 \
-		harfbuzz>=2.6.1:print/harfbuzz \
+		harfbuzz>=2.6.4:print/harfbuzz \
 		icu>=64.1,1:devel/icu \
 		libevent>=2.1.8:devel/libevent \
 		libvorbis>=1.3.6,3:audio/libvorbis \
@@ -49,10 +49,10 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		llvm${LLVM_DEFAULT}>=0:devel/llvm${LLVM_DEFAULT} \
 		nasm:devel/nasm \
 		node:www/node \
-		nspr>=4.24:devel/nspr \
-		nss>=3.49.2:security/nss \
+		nspr>=4.25:devel/nspr \
+		nss>=3.50:security/nss \
 		png>=1.6.35:graphics/png \
-		rust-cbindgen>=0.12.0:devel/rust-cbindgen \
+		rust-cbindgen>=0.13.0:devel/rust-cbindgen \
 		sqlite3>=3.30.1:databases/sqlite3 \
 		v4l_compat>0:multimedia/v4l_compat \
 		yasm:devel/yasm \
