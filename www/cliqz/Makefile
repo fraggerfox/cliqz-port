@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/cliqz/Makefile 530186 2020-04-01 00:02:28Z fox $
+# $FreeBSD: head/www/cliqz/Makefile 528343 2020-03-13 09:47:16Z jbeich $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.34.0
@@ -21,7 +21,7 @@ LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 DEPRECATED=	Uses deprecated version of python
-EXPIRATION_DATE=	2020-09-15
+EXPIRATION_DATE=	2020-12-31
 
 FETCH_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
