@@ -99,9 +99,7 @@ MOZ_CONFIGURE_ARGS+=	"--disable-crashreporter" \
 			"--disable-debug-symbols" \
 			"--disable-tests" \
 			"--disable-updater" \
-			"--libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib" \
-			"--with-system-graphite2" \
-			"--with-system-harfbuzz"
+			"--libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib"
 
 .include "${.CURDIR}/Makefile.options"
 
