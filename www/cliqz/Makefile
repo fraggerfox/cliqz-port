@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/cliqz/Makefile 528343 2020-03-13 09:47:16Z jbeich $
+# $FreeBSD: head/www/cliqz/Makefile 530637 2020-04-04 10:51:21Z fox $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.34.0
@@ -99,7 +99,9 @@ MOZ_CONFIGURE_ARGS+=	"--disable-crashreporter" \
 			"--disable-debug-symbols" \
 			"--disable-tests" \
 			"--disable-updater" \
-			"--libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib"
+			"--libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib" 
+#			"--with-system-graphite2" \
+#			"--with-system-harfbuzz"
 
 .include "${.CURDIR}/Makefile.options"
 
