@@ -35,7 +35,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libplds4.so:devel/nspr
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
-		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
+		py${PYTHON3_DEFAULT:S/.//}-sqlite3>0:databases/py-sqlite3@py${PYTHON3_DEFAULT:S/.//} \
 		${RUST_DEFAULT}>=1.41:lang/${RUST_DEFAULT} \
 		autoconf-2.13:devel/autoconf213 \
 		bash:shells/bash \
