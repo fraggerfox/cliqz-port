@@ -29,6 +29,8 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libfreetype.so:print/freetype2 \
 		libgraphite2.so:graphics/graphite2 \
 		libharfbuzz.so:print/harfbuzz \
+		libaom.so:multimedia/aom \
+		libdav1d.so:multimedia/dav1d \
 		libnspr4.so:devel/nspr \
 		libnssutil3.so:security/nss \
 		libplc4.so:devel/nspr \
@@ -98,6 +100,7 @@ MOZ_CONFIGURE_ARGS+=	"--disable-crashreporter" \
 			"--disable-debug-symbols" \
 			"--disable-tests" \
 			"--disable-updater" \
+			"--with-system-av1" \
 			"--libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib" 
 
 .include "${.CURDIR}/Makefile.options"
