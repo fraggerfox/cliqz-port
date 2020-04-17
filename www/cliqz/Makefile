@@ -29,15 +29,12 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libfreetype.so:print/freetype2 \
 		libgraphite2.so:graphics/graphite2 \
 		libharfbuzz.so:print/harfbuzz \
-		libaom.so:multimedia/aom \
-		libdav1d.so:multimedia/dav1d \
 		libnspr4.so:devel/nspr \
 		libnssutil3.so:security/nss \
 		libplc4.so:devel/nspr \
 		libplds4.so:devel/nspr
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
-		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
 		py${PYTHON3_DEFAULT:S/.//}-sqlite3>0:databases/py-sqlite3@py${PYTHON3_DEFAULT:S/.//} \
 		${RUST_DEFAULT}>=1.41:lang/${RUST_DEFAULT} \
 		autoconf-2.13:devel/autoconf213 \
@@ -101,7 +98,7 @@ MOZ_CONFIGURE_ARGS+=	"--disable-crashreporter" \
 			"--disable-debug-symbols" \
 			"--disable-tests" \
 			"--disable-updater" \
-			"--with-system-av1" \
+			"--with-system-libvpx" \
 			"--libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib" 
 
 .include "${.CURDIR}/Makefile.options"
