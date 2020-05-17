@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/cliqz/Makefile 530945 2020-04-07 03:23:55Z fox $
+# $FreeBSD: head/www/cliqz/Makefile 531979 2020-04-17 22:36:38Z fox $
 
 PORTNAME=	cliqz
 DISTVERSION=	1.35.0
@@ -32,7 +32,8 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libnspr4.so:devel/nspr \
 		libnssutil3.so:security/nss \
 		libplc4.so:devel/nspr \
-		libplds4.so:devel/nspr
+		libplds4.so:devel/nspr \
+		libvpx.so:multimedia/libvpx
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
@@ -100,7 +101,7 @@ MOZ_CONFIGURE_ARGS+=	"--disable-crashreporter" \
 			"--disable-tests" \
 			"--disable-updater" \
 			"--with-system-libvpx" \
-			"--libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib" 
+			"--libclang-path=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib"
 
 .include "${.CURDIR}/Makefile.options"
 
