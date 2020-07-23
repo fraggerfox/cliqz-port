@@ -1,7 +1,7 @@
-# $FreeBSD: head/www/cliqz/Makefile 535564 2020-05-17 18:12:10Z fox $
+# $FreeBSD: head/www/cliqz/Makefile 542412 2020-07-17 06:44:04Z tobik $
 
 PORTNAME=	cliqz
-DISTVERSION=	1.36.0
+DISTVERSION=	1.38.0
 CATEGORIES=	www
 MASTER_SITES=	https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/:amazon \
 		http://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/${CLIQZ_LAST_BUILD_ID}/:cliqz
@@ -80,7 +80,7 @@ SHEBANG_FILES=	magic_build_and_package.sh
 CLIQZ_CHANNEL=		release
 # If the DISTVERSION is updated, make sure to update the last build id from
 # fetch -qo - https://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/lastbuildid
-CLIQZ_LAST_BUILD_ID=	20200512121102
+CLIQZ_LAST_BUILD_ID=	20200721193739
 CLIQZ_ICON=		${PORTNAME}.png
 CLIQZ_ICON_SRC=		${WRKSRC}/mozilla-release/browser/branding/${PORTNAME}/default48.png
 MOZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/mozilla.desktop
@@ -93,6 +93,7 @@ MAKE_ENV+=	CQZ_BUILD_ID=${CLIQZ_LAST_BUILD_ID} \
 		PYTHON3="${LOCALBASE}/bin/python${PYTHON3_DEFAULT}" \
 		RUSTFLAGS=${RUSTFLAGS} \
 		MOZBUILD_STATE_PATH=${WRKDIR}
+BINARY_ALIAS+=	python3=python${PYTHON3_DEFAULT}
 
 # Configure args passed into mach build system
 MOZ_CONFIGURE_ARGS+=	"--disable-crashreporter" \
@@ -130,7 +131,8 @@ USES:=		${USES:Ncompiler\:*}
 .endif
 
 post-extract:
-	${CP} ${DISTDIR}/${DIST_SUBDIR}/adult-domains.bin ${WRKSRC}
+	${CP} ${DISTDIR}/${DIST_SUBDIR}/adult-domains.bin \
+		${WRKSRC}/mozilla-release/browser/adult-domains.bin
 	${MKDIR} ${WRKSRC}/obj/dist/bin/browser/features
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/cliqz@cliqz.com.xpi \
 		${DISTDIR}/${DIST_SUBDIR}/https-everywhere@cliqz.com.xpi \
