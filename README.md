@@ -5,6 +5,8 @@ FreeBSD [Ports][4] script for Cliqz Browser.
 
 You can find more information about Cliqz Brower [here][1]
 
+**NOTE: This port has been deprectated and removed from the ports tree.**
+
 Installation
 ------------
 
